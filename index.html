@@ -1,21 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>RID 40150 - Ru Yi (Potawatomi)</h1>
-    <script
-      type="text/javascript"
-      src="//www.opentable.com/widget/reservation/loader?rid=40150&type=standard&theme=standard&iframe=false&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website"
-    ></script>
-    <h1>RID 432 - NO-OpenTabe Cafe</h1>
-    <script
-      type="text/javascript"
-      src="//www.opentable.com/widget/reservation/loader?rid=432&type=standard&theme=standard&iframe=false&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website"
-    ></script>
-  </body>
-</html>
+<head>
+  <!-- Beginning of script for the datepicker. -->
+  <!-- This is needed for the datepicker. -->
+  <link
+    rel="stylesheet"
+    href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"
+  />
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#datepicker").datepicker({ dateFormat: "yy-mm-dd" }).val();
+    });
+  </script>
+  <!-- End of scripts for the datepicker. -->
+</head>
+<form id="ot-reservation-form">
+  <!--Restaurant Selctor, value is OpenTable restaurant ID-->
+  <div>
+    Date:
+    <input type="text" id="datepicker" name="resDate" class="dateselect" />
+  </div>
+
+  <!--values must stay as they are, displayed time can be changed-->
+  <div>
+    Time:
+    <select id="resTime">
+      <!-- <option value="00:00">12:00 AM</option>
+      <option value="00:30">00:30 AM</option>
+      <option value="01:00">01:00 AM</option>
+      <option value="01:30">01:30 AM</option>
+      <option value="02:00">02:00 AM</option>
+      <option value="02:30">02:30 AM</option>
+      <option value="03:00">03:00 AM</option>
+      <option value="03:30">03:30 AM</option>
+      <option value="04:00">04:00 AM</option>
+      <option value="04:30">04:30 AM</option>
+      <option value="05:00">05:00 AM</option>
+      <option value="05:30">05:30 AM</option>
+      <option value="06:00">06:00 AM</option>
+      <option value="06:30">06:30 AM</option>
+      <option value="07:00">07:00 AM</option>
+      <option value="07:30">07:30 AM</option>
+      <option value="08:00">08:00 AM</option>
+      <option value="08:30">08:30 AM</option>
+      <option value="09:00">09:00 AM</option>
+      <option value="09:30">09:30 AM</option>
+      <option value="10:00">10:00 AM</option>
+      <option value="10:30">10:30 AM</option>
+      <option value="11:00">11:00 AM</option>
+      <option value="11:30">11:30 AM</option>
+      <option value="12:00">12:00 PM</option>
+      <option value="12:30">12:30 PM</option>
+      <option value="13:00">1:00 PM</option>
+      <option value="13:30">1:30 PM</option>
+      <option value="14:00">2:00 PM</option>
+      <option value="14:30">2:30 PM</option>
+      <option value="15:00">3:00 PM</option>
+      <option value="15:30">3:30 PM</option>
+      <option value="16:00">4:00 PM</option>
+      <option value="16:30">4:30 PM</option> -->
+      <option value="17:00">5:00 PM</option>
+      <option value="17:30">5:30 PM</option>
+      <option value="18:00" selected>6:00 PM</option>
+      <option value="18:30">6:30 PM</option>
+      <option value="19:00">7:00 PM</option>
+      <option value="19:30">7:30 PM</option>
+      <option value="20:00">8:00 PM</option>
+      <option value="20:30">8:30 PM</option>
+      <!-- <option value="21:00">9:00 PM</option>
+      <option value="21:30">9:30 PM</option>
+      <option value="22:00">10:00 PM</option>
+      <option value="22:30">10:30 PM</option>
+      <option value="23:00">11:00 PM</option>
+      <option value="23:30">11:30 PM</option> -->
+    </select>
+  </div>
+  <div>
+    Party Size:
+    <select id="partySize">
+      <option value="1" selected>1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+  </div>
+  <input type="button" value="Find a Table" onClick="otSubmit()" />
+</form>
+<script type="text/javascript">
+  function otSubmit() {
+    // LINE 95 REPRESENTS THE RESTAURANTS ID CHANGE VALUE
+    var rid = "432";
+    var partySize = document.getElementById("partySize").value;
+    var dateTime =
+      document.getElementById("datepicker").value +
+      "T" +
+      document.getElementById("resTime").value;
+    var url =
+      "//www.opentable.com/restaurant/profile/" +
+      rid +
+      "/reserve?restref=" +
+      rid +
+      "&ref=10792" +
+      "&datetime=" +
+      dateTime +
+      "&covers=" +
+      partySize +
+      "&searchdatetime=" +
+      dateTime +
+      "&partysize=" +
+      partySize;
+    window.open(url);
+  }
+</script>
